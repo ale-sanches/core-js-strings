@@ -284,11 +284,14 @@ function formatTime(minutes, seconds) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
+// function reverseString(str) {
+//   const splitStr = str.split('');
+//   const reverseArray = splitStr.reverse();
+//   const newStr = reverseArray.join('');
+//   return newStr;
+// }
 function reverseString(str) {
-  const splitStr = str.split('');
-  const reverseArray = splitStr.reverse();
-  const newStr = reverseArray.join('');
-  return newStr;
+  return str.split('').reverse().join('');
 }
 
 /**
@@ -305,8 +308,7 @@ function reverseString(str) {
 function orderAlphabetically(str) {
   const splitStr = str.split('');
   const sortedStr = splitStr.sort();
-  const newStr = sortedStr.join('');
-  return newStr;
+  return sortedStr.join('');
 }
 
 /**
@@ -339,7 +341,15 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
+function countVowels(str) {
+  const vowels = 'aeiouyAEIOUY';
+  let number = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    if (vowels.indexOf(str[i]) !== -1) {
+      number += 1;
+    }
+  }
+  return number;
 }
 
 /**
@@ -347,7 +357,7 @@ function countVowels(/* str */) {
  * https://en.wikipedia.org/wiki/Palindrome
  *
  * @param {string} str - The input string.
- * @return {bool} - True if the string is a palindrome, false otherwise.
+ * @return {boolean} - True if the string is a palindrome, false otherwise.
  *
  * @example:
  *   isPalindrome('madam') => true
@@ -355,7 +365,12 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
+function isPalindrome(str) {
+  const cleanedStr = str.toLowerCase().replace(/[^a-z]/g, '');
+  const splitStr = cleanedStr.split('');
+  const reverseArray = splitStr.reverse();
+  const newStr = reverseArray.join('');
+  return cleanedStr === newStr;
 }
 
 /**
@@ -370,7 +385,16 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
+function findLongestWord(sentence) {
+  const wordList = sentence.split(' ');
+  let longestWord = '';
+
+  for (let i = 0; i < wordList.length; i += 1) {
+    if (wordList[i].length > longestWord.length) {
+      longestWord = wordList[i];
+    }
+  }
+  return longestWord;
 }
 
 /**
@@ -383,7 +407,11 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
+function reverseWords(str) {
+  return str
+    .split(' ')
+    .map((word) => word.split('').reverse().join(''))
+    .join(' ');
 }
 
 /**
@@ -397,7 +425,15 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
+function invertCase(str) {
+  const strArr = str.split('');
+  const invertedArr = strArr.map((char) => {
+    if (char === char.toUpperCase()) {
+      return char.toLowerCase();
+    }
+    return char.toUpperCase();
+  });
+  return invertedArr.join('');
 }
 
 /**
@@ -413,7 +449,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -426,7 +463,8 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
+function extractNameFromTemplate(value) {
+  return value.replace('Hello, ', '').replace('!', '').trim();
 }
 
 /**
@@ -440,7 +478,8 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
+function unbracketTag(str) {
+  return str.replace('<', '').replace('>', '').trim();
 }
 
 /**
@@ -458,7 +497,8 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -477,7 +517,8 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
+function encodeToRot13(str) {
+
 }
 
 /**
